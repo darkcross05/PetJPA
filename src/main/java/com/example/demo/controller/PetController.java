@@ -35,7 +35,7 @@ public class PetController {
     }
 
     @PutMapping("/{id}")
-    public HttpStatus updateById(@PathVariable Long id, PetEntity pet) {
+    public HttpStatus updateById(@PathVariable Long id, @RequestBody PetEntity pet) {
         return petService.update(id, pet);
     }
 

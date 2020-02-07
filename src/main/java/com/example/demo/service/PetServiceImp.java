@@ -41,8 +41,8 @@ public class PetServiceImp implements PetService {
     @Override
     public HttpStatus update(Long id, PetEntity pet) {
         petRepository.findById(id).ifPresent(pet1 -> {
-            pet1.setId(id);
-            petRepository.save(pet1);
+            pet.setId(id);
+            petRepository.save(pet);
         });
         return HttpStatus.ACCEPTED;
     }

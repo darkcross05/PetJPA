@@ -42,17 +42,24 @@ class PetControllerTest {
         PetEntity response = testRestTemplate.getForObject(ResourceUrl + "/1", PetEntity.class);
 
         assertNotNull(response.getName());
-        assertEquals(response.getName(), "Juan");
+        assertEquals(response.getName(), "Luis");
     }
 
     @Test
     void methodShouldAddSaveUser() {
-
         HttpEntity<PetEntity> request = new HttpEntity<>(new PetEntity("Luis", "Person"));
 
         PetEntity response = testRestTemplate.postForObject(ResourceUrl, request, PetEntity.class);
 
         assertNotNull(response);
         assertEquals(response.getName(), "Luis");
+    }
+
+    @Test
+    void methodShouldDeleteUser() {
+        testRestTemplate.delete(ResourceUrl + "/1");
+        PetEntity response = testRestTemplate.getForObject(ResourceUrl + "/1", PetEntity.class);
+        assertNull(response.getName());
+        assertNull(response.getType());
     }
 }
